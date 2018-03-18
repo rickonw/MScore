@@ -77,7 +77,7 @@ set(all_SRC
     #../src/json/jsonxx.cc
 )
 
-link_libraries(../thirdparty/wildmidi/wildmidi_dynamic winmm )
+link_libraries(../thirdparty/wildmidi/wildmidi_dynamic winmm)
 link_libraries(../thirdparty/verovio/verovio)
 
 if (BUILD_AS_LIBRARY)
@@ -91,11 +91,10 @@ else()
     message(STATUS "build MScore as executable")
     add_executable (
         MScore
-        main.cpp
+        #main.cpp
         ${all_SRC}
     )
 endif()
-
 
 install(
     TARGETS MScore

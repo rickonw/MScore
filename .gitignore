@@ -60,3 +60,4 @@ output.mei
 index.js
 emscripten/npm-dev/node_modules
 *si4project
+thirdparty/verovio/verovio.lib
