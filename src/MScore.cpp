@@ -451,7 +451,7 @@ void create_midi(vrv::Toolkit &toolkit, int all_pages, int from, int to, std::st
 {    
 
 
-    char *cfg = "../thirdparty/freepats/freepats.cfg";
+    char *cfg = "../thirdparty/wildmidi/freepats/freepats.cfg";
     struct _WM_inPlayHook wmhook;
 
     outfile += ".mid";
@@ -715,6 +715,14 @@ end:
     }
 
     return ret;
+}
+
+
+int MScore_thread()
+{
+
+
+
 }
 
 int main(int argc, char **argv)
