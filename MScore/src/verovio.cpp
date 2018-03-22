@@ -4,7 +4,7 @@
 // Created:     26/06/2012
 // Copyright (c) Authors and others. All rights reserved.
 /////////////////////////////////////////////////////////////////////////////
-
+#include "stdafx.h"
 #include <assert.h>
 #include <iostream>
 #include <regex>
@@ -449,9 +449,7 @@ void create_svg(vrv::Toolkit &toolkit, int all_pages, int from, int to, std::str
 
 void create_midi(vrv::Toolkit &toolkit, int all_pages, int from, int to, std::string outfile)
 {    
-
-
-    char *cfg = "../thirdparty/wildmidi/freepats/freepats.cfg";
+    char *cfg = (char *)"../thirdparty/wildmidi/freepats/freepats.cfg";
     struct _WM_inPlayHook wmhook;
 
     outfile += ".mid";
@@ -468,8 +466,6 @@ void create_midi(vrv::Toolkit &toolkit, int all_pages, int from, int to, std::st
     wmhook.pfn_update = midiUpdate;
     wildmidi(outfile.c_str(), cfg, &wmhook);
 }
-
-
 
 void create_hum(vrv::Toolkit &toolkit, int all_pages, int from, int to, std::string outfile)
 {
@@ -717,21 +713,15 @@ end:
     return ret;
 }
 
-
-int MScore_thread()
-{
-
-
-
-}
-
-int main(int argc, char **argv)
+int main_t(int argc, char **argv)
 {
     std::string infile;
     std::string outfile;
     std::string outformat = "midi";
     bool std_output = false;
     std::string fontName;
+	int from;
+	int to;
 
     int all_pages = 1;
     int page = 1;
@@ -825,8 +815,8 @@ int main(int argc, char **argv)
         }
     }
 
-    int from = page;
-    int to = page + 1;
+    from = page;
+    to = page + 1;
     if (all_pages) {
         to = toolkit.GetPageCount() + 1;
     }

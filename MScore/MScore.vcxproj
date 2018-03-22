@@ -75,6 +75,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <LibraryPath>thirdparty\wildmidi;thirdparty\verovio;$(LibraryPath)</LibraryPath>
+    <IncludePath>thirdparty\wildmidi\include;thirdparty\libmei\include;thirdparty\verovio\include\hum;thirdparty\verovio\include\json;thirdparty\verovio\include\midi;thirdparty\verovio\include\pugi;thirdparty\verovio\include\utf8;thirdparty\verovio\include\vrv;thirdparty\verovio\include\win32;.;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -102,12 +104,13 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>wildmidi_dynamic.lib;verovio.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -151,9 +154,169 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="thirdparty\libmei\include\attclasses.h" />
+    <ClInclude Include="thirdparty\libmei\include\attconverter.h" />
+    <ClInclude Include="thirdparty\libmei\include\atts_analytical.h" />
+    <ClInclude Include="thirdparty\libmei\include\atts_cmn.h" />
+    <ClInclude Include="thirdparty\libmei\include\atts_cmnornaments.h" />
+    <ClInclude Include="thirdparty\libmei\include\atts_critapp.h" />
+    <ClInclude Include="thirdparty\libmei\include\atts_edittrans.h" />
+    <ClInclude Include="thirdparty\libmei\include\atts_externalsymbols.h" />
+    <ClInclude Include="thirdparty\libmei\include\atts_facsimile.h" />
+    <ClInclude Include="thirdparty\libmei\include\atts_figtable.h" />
+    <ClInclude Include="thirdparty\libmei\include\atts_fingering.h" />
+    <ClInclude Include="thirdparty\libmei\include\atts_gestural.h" />
+    <ClInclude Include="thirdparty\libmei\include\atts_harmony.h" />
+    <ClInclude Include="thirdparty\libmei\include\atts_header.h" />
+    <ClInclude Include="thirdparty\libmei\include\atts_mei.h" />
+    <ClInclude Include="thirdparty\libmei\include\atts_mensural.h" />
+    <ClInclude Include="thirdparty\libmei\include\atts_midi.h" />
+    <ClInclude Include="thirdparty\libmei\include\atts_pagebased.h" />
+    <ClInclude Include="thirdparty\libmei\include\atts_performance.h" />
+    <ClInclude Include="thirdparty\libmei\include\atts_shared.h" />
+    <ClInclude Include="thirdparty\libmei\include\atts_tablature.h" />
+    <ClInclude Include="thirdparty\libmei\include\atts_usersymbols.h" />
+    <ClInclude Include="thirdparty\libmei\include\atts_visual.h" />
+    <ClInclude Include="thirdparty\libmei\include\atttypes.h" />
+    <ClInclude Include="thirdparty\verovio\include\hum\humlib.h" />
+    <ClInclude Include="thirdparty\verovio\include\json\jsonxx.h" />
+    <ClInclude Include="thirdparty\verovio\include\midi\Binasc.h" />
+    <ClInclude Include="thirdparty\verovio\include\midi\MidiEvent.h" />
+    <ClInclude Include="thirdparty\verovio\include\midi\MidiEventList.h" />
+    <ClInclude Include="thirdparty\verovio\include\midi\MidiFile.h" />
+    <ClInclude Include="thirdparty\verovio\include\midi\MidiMessage.h" />
+    <ClInclude Include="thirdparty\verovio\include\pugi\pugiconfig.hpp" />
+    <ClInclude Include="thirdparty\verovio\include\pugi\pugixml.hpp" />
+    <ClInclude Include="thirdparty\verovio\include\utf8\checked.h" />
+    <ClInclude Include="thirdparty\verovio\include\utf8\core.h" />
+    <ClInclude Include="thirdparty\verovio\include\utf8\unchecked.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\accid.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\anchoredtext.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\areaposinterface.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\arpeg.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\artic.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\att.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\attalternates.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\attcomparison.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\attdef.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\barline.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\bboxdevicecontext.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\beam.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\boundary.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\boundingbox.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\breath.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\btrem.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\chord.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\clef.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\controlelement.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\custos.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\devicecontext.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\devicecontextbase.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\dir.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\doc.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\dot.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\drawinginterface.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\durationinterface.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\dynam.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\editorial.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\elementpart.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\ending.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\expansion.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\fb.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\fermata.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\fig.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\floatingobject.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\ftrem.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\functorparams.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\glyph.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\hairpin.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\harm.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\horizontalaligner.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\instrdef.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\io.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\iodarms.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\iohumdrum.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\iomei.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\iomusxml.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\iopae.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\keysig.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\label.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\labelabbr.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\layer.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\layerelement.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\lb.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\ligature.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\mdiv.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\measure.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\mensur.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\metersig.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\mnum.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\mordent.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\mrest.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\multirest.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\note.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\num.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\object.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\octave.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\options.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\page.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\pages.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\pedal.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\pgfoot.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\pgfoot2.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\pghead.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\pghead2.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\pitchinterface.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\plistinterface.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\positioninterface.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\proport.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\ref.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\rend.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\rest.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\rpt.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\runningelement.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\score.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\scoredef.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\scoredefinterface.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\section.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\slur.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\smufl.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\space.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\staff.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\staffdef.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\staffgrp.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\svg.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\svgdevicecontext.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\syl.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\system.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\systemelement.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\tempo.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\text.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\textdirinterface.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\textelement.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\tie.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\timeinterface.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\timestamp.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\toolkit.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\trill.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\tuplet.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\turn.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\verse.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\verticalaligner.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\view.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\vrv.h" />
+    <ClInclude Include="thirdparty\verovio\include\vrv\vrvdef.h" />
+    <ClInclude Include="thirdparty\verovio\include\win32\win_dirent.h" />
+    <ClInclude Include="thirdparty\verovio\include\win32\win_getopt.h" />
+    <ClInclude Include="thirdparty\verovio\include\win32\win_time.h" />
+    <ClInclude Include="thirdparty\wildmidi\include\filenames.h" />
+    <ClInclude Include="thirdparty\wildmidi\include\wildmidi_lib.h" />
+    <ClInclude Include="thirdparty\wildmidi\include\wm_tty.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MScore.cpp" />
+    <ClCompile Include="src\verovio.cpp" />
+    <ClCompile Include="src\wildmidi.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

@@ -13,6 +13,39 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="头文件\thirdparty">
+      <UniqueIdentifier>{f089a7a5-21bc-4c1e-b726-ff57a5b12b74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\thirdparty\verovio">
+      <UniqueIdentifier>{441823c7-d043-4ad1-9784-f206deb40a7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\thirdparty\libmei">
+      <UniqueIdentifier>{9d0f3149-960c-4d16-87fe-9fc103fb9432}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\thirdparty\verovio\win32">
+      <UniqueIdentifier>{3aa6a554-8661-4d4d-be12-39e31f8984e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\thirdparty\verovio\vrv">
+      <UniqueIdentifier>{e6cb3580-c52f-421c-aaa3-e1bac61ace3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\thirdparty\verovio\utf8">
+      <UniqueIdentifier>{fb62fa00-c51f-4006-9190-742f4627519f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\thirdparty\wildmidi">
+      <UniqueIdentifier>{a2a83fff-e678-457b-b7c8-832c8045e1f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\thirdparty\verovio\pugi">
+      <UniqueIdentifier>{54ee4355-a43f-4efb-932d-89ef2e5d9629}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\thirdparty\verovio\midi">
+      <UniqueIdentifier>{9011fe72-4ccb-48fa-8854-f113634727d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\thirdparty\verovio\json">
+      <UniqueIdentifier>{76fe9a29-67c1-4044-ac8d-396c937b8d8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\thirdparty\verovio\hum">
+      <UniqueIdentifier>{c19ce8fd-5627-4fcf-bd90-8cc6a03a552b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -27,12 +60,492 @@
     <ClInclude Include="MScore.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="thirdparty\wildmidi\include\filenames.h">
+      <Filter>头文件\thirdparty\wildmidi</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\wildmidi\include\wildmidi_lib.h">
+      <Filter>头文件\thirdparty\wildmidi</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\wildmidi\include\wm_tty.h">
+      <Filter>头文件\thirdparty\wildmidi</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\libmei\include\attclasses.h">
+      <Filter>头文件\thirdparty\libmei</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\libmei\include\attconverter.h">
+      <Filter>头文件\thirdparty\libmei</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\libmei\include\atts_analytical.h">
+      <Filter>头文件\thirdparty\libmei</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\libmei\include\atts_cmn.h">
+      <Filter>头文件\thirdparty\libmei</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\libmei\include\atts_cmnornaments.h">
+      <Filter>头文件\thirdparty\libmei</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\libmei\include\atts_critapp.h">
+      <Filter>头文件\thirdparty\libmei</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\libmei\include\atts_edittrans.h">
+      <Filter>头文件\thirdparty\libmei</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\libmei\include\atts_externalsymbols.h">
+      <Filter>头文件\thirdparty\libmei</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\libmei\include\atts_facsimile.h">
+      <Filter>头文件\thirdparty\libmei</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\libmei\include\atts_figtable.h">
+      <Filter>头文件\thirdparty\libmei</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\libmei\include\atts_fingering.h">
+      <Filter>头文件\thirdparty\libmei</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\libmei\include\atts_gestural.h">
+      <Filter>头文件\thirdparty\libmei</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\libmei\include\atts_harmony.h">
+      <Filter>头文件\thirdparty\libmei</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\libmei\include\atts_header.h">
+      <Filter>头文件\thirdparty\libmei</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\libmei\include\atts_mei.h">
+      <Filter>头文件\thirdparty\libmei</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\libmei\include\atts_mensural.h">
+      <Filter>头文件\thirdparty\libmei</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\libmei\include\atts_midi.h">
+      <Filter>头文件\thirdparty\libmei</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\libmei\include\atts_pagebased.h">
+      <Filter>头文件\thirdparty\libmei</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\libmei\include\atts_performance.h">
+      <Filter>头文件\thirdparty\libmei</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\libmei\include\atts_shared.h">
+      <Filter>头文件\thirdparty\libmei</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\libmei\include\atts_tablature.h">
+      <Filter>头文件\thirdparty\libmei</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\libmei\include\atts_usersymbols.h">
+      <Filter>头文件\thirdparty\libmei</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\libmei\include\atts_visual.h">
+      <Filter>头文件\thirdparty\libmei</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\libmei\include\atttypes.h">
+      <Filter>头文件\thirdparty\libmei</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\hum\humlib.h">
+      <Filter>头文件\thirdparty\verovio\hum</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\json\jsonxx.h">
+      <Filter>头文件\thirdparty\verovio\json</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\midi\Binasc.h">
+      <Filter>头文件\thirdparty\verovio\midi</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\midi\MidiEvent.h">
+      <Filter>头文件\thirdparty\verovio\midi</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\midi\MidiEventList.h">
+      <Filter>头文件\thirdparty\verovio\midi</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\midi\MidiFile.h">
+      <Filter>头文件\thirdparty\verovio\midi</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\midi\MidiMessage.h">
+      <Filter>头文件\thirdparty\verovio\midi</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\pugi\pugiconfig.hpp">
+      <Filter>头文件\thirdparty\verovio\pugi</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\pugi\pugixml.hpp">
+      <Filter>头文件\thirdparty\verovio\pugi</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\utf8\checked.h">
+      <Filter>头文件\thirdparty\verovio\utf8</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\utf8\core.h">
+      <Filter>头文件\thirdparty\verovio\utf8</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\utf8\unchecked.h">
+      <Filter>头文件\thirdparty\verovio\utf8</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\accid.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\anchoredtext.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\areaposinterface.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\arpeg.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\artic.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\att.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\attalternates.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\attcomparison.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\attdef.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\barline.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\bboxdevicecontext.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\beam.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\boundary.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\boundingbox.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\breath.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\btrem.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\chord.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\clef.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\controlelement.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\custos.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\devicecontext.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\devicecontextbase.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\dir.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\doc.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\dot.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\drawinginterface.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\durationinterface.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\dynam.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\editorial.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\elementpart.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\ending.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\expansion.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\fb.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\fermata.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\fig.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\floatingobject.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\ftrem.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\functorparams.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\glyph.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\hairpin.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\harm.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\horizontalaligner.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\instrdef.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\io.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\iodarms.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\iohumdrum.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\iomei.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\iomusxml.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\iopae.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\keysig.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\label.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\labelabbr.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\layer.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\layerelement.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\lb.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\ligature.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\mdiv.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\measure.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\mensur.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\metersig.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\mnum.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\mordent.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\mrest.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\multirest.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\note.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\num.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\object.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\octave.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\options.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\page.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\pages.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\pedal.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\pgfoot.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\pgfoot2.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\pghead.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\pghead2.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\pitchinterface.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\plistinterface.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\positioninterface.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\proport.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\ref.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\rend.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\rest.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\rpt.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\runningelement.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\score.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\scoredef.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\scoredefinterface.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\section.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\slur.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\smufl.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\space.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\staff.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\staffdef.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\staffgrp.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\svg.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\svgdevicecontext.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\syl.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\system.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\systemelement.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\tempo.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\text.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\textdirinterface.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\textelement.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\tie.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\timeinterface.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\timestamp.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\toolkit.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\trill.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\tuplet.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\turn.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\verse.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\verticalaligner.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\view.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\vrv.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\vrv\vrvdef.h">
+      <Filter>头文件\thirdparty\verovio\vrv</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\win32\win_dirent.h">
+      <Filter>头文件\thirdparty\verovio\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\win32\win_getopt.h">
+      <Filter>头文件\thirdparty\verovio\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\verovio\include\win32\win_time.h">
+      <Filter>头文件\thirdparty\verovio\win32</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="MScore.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\verovio.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\wildmidi.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

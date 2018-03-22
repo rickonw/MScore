@@ -23,6 +23,7 @@
 
 //#include "config.h"
 
+#include "stdafx.h"
 #include <stdint.h>
 #include <errno.h>
 #include <stdio.h>
@@ -283,7 +284,7 @@ std::fstream audio_fd;
 #define WM_IS_BADF(_fd) ((_fd)<0)
 #define WM_BADF -1
 static inline int wmidi_fileexists (const char *path) {
-    return (GetFileAttributes(path) != INVALID_FILE_ATTRIBUTES);
+    return (GetFileAttributes((LPCWSTR)path) != INVALID_FILE_ATTRIBUTES);
 }
 static inline int wmidi_open_write (const char *path, std::fstream &fd) {
 
