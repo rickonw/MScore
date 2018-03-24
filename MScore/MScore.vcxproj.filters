@@ -542,10 +542,10 @@
     <ClCompile Include="MScore.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\verovio.cpp">
+    <ClCompile Include="src\wildmidi.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\wildmidi.cpp">
+    <ClCompile Include="src\verovio_adp.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -559,6 +559,9 @@
       <Filter>资源文件</Filter>
     </Image>
     <Image Include="MScore.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="icon1.ico">
       <Filter>资源文件</Filter>
     </Image>
   </ItemGroup>

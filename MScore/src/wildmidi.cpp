@@ -152,11 +152,11 @@ static int msleep(unsigned long millisec);
 
 using namespace std;
 
-
+/*
 #ifdef __cplusplus
     extern "C"{
 #endif
-
+*/
 #define WILDMIDI_CFG "freepats.cfg"
 
 struct _midi_test {
@@ -2405,9 +2405,9 @@ static int msleep(unsigned long milisec) {
     return (1);
 }
 #endif
-
+/*
 #ifdef __cplusplus
 }
 #endif
-
+*/
 

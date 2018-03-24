@@ -209,11 +209,11 @@ void display_usage()
     }
 }
 
-
+/*
 #ifdef __cplusplus
     extern "C"{
 #endif
-
+*/
 
 extern int wildmidi(const char *file, char *cfg, struct _WM_inPlayHook *wmhook);
 
@@ -511,7 +511,7 @@ void create_timemap(vrv::Toolkit &toolkit, int all_pages, int from, int to, std:
     }
 }
 
-int MScore_init(vrv::Toolkit &toolkit ,std::string &infile, 
+int MScore_init_t(vrv::Toolkit &toolkit ,std::string &infile, 
                 std::string &outfile, int argc, char **argv)
 {
     int show_help = 0;
@@ -523,12 +523,6 @@ int MScore_init(vrv::Toolkit &toolkit ,std::string &infile,
     struct option *long_options = NULL;
 
     int i = 0;
-
-    if (argc < 2) {
-        std::cerr << "Expected one input file but found none." << std::endl << std::endl;
-        display_usage();
-        return 1;
-    }
 
     static struct option base_options[] = {
         { "all-pages", no_argument, 0, 'a' },
@@ -713,7 +707,14 @@ end:
     return ret;
 }
 
-int main_t(int argc, char **argv)
+int MScore_init(vrv::Toolkit &toolkit ,std::string &infile, 
+                std::string &outfile)
+{
+    return 0;
+}
+
+
+int MScore_Main(int argc, char **argv)
 {
     std::string infile;
     std::string outfile;
@@ -732,7 +733,7 @@ int main_t(int argc, char **argv)
     // The fonts will be loaded later with Resources::InitFonts()
     vrv::Toolkit toolkit(false);
 
-    if(MScore_init(toolkit, infile, outfile, argc, argv)) {
+    if(MScore_init_t(toolkit, infile, outfile, argc, argv)) {
         goto end;
     }
 
@@ -843,9 +844,139 @@ end:
     return 0;
 }
 
+int MScore_OpenFile(std::string infile)
+{
+//    std::string infile;
+    std::string outfile;
+    std::string outformat = "midi";
+    bool std_output = false;
+    std::string fontName;
+	int from;
+	int to;
 
+    int all_pages = 1;
+    int page = 1;
+    vrv::Options *options;
+
+    // Create the toolkit instance without loading the font because
+    // the resource path might be specified in the parameters
+    // The fonts will be loaded later with Resources::InitFonts()
+    vrv::Toolkit toolkit(false);
+
+    if(MScore_init(toolkit, infile, outfile)) {
+        goto end;
+    }
+
+    options = toolkit.GetOptions();
+
+    vrv::Resources::SetPath("..\\..\\MScore\\data");
+
+    // Make sure the user uses a valid Resource path
+    // Save many headaches for empty SVGs
+    if (!dir_exists(vrv::Resources::GetPath())) {
+        std::cerr << "The resources path " << vrv::Resources::GetPath() << " could not be found; please use -r option."
+             << std::endl;
+        goto end;
+    }
+
+    // Load the music font from the resource directory
+    if (!vrv::Resources::InitFonts()) {
+        std::cerr << "The music font could not be loaded; please check the contents of the resource directory." << std::endl;
+        goto end;
+    }
+
+    // Load a specified font
+    if (!vrv::Resources::SetFont(options->m_font.GetValue())) {
+        std::cerr << "Font '" << options->m_font.GetValue() << "' could not be loaded." << std::endl;
+        goto end;
+    }
+
+    if ((outformat != "svg") && (outformat != "mei") && (outformat != "midi") && (outformat != "timemap")
+        && (outformat != "humdrum") && (outformat != "hum")) {
+        std::cerr << "Output format (" << outformat << ") can only be 'mei', 'svg', 'midi', or 'humdrum'." << std::endl;
+        goto end;
+    }
+
+    // Make sure we provide a file name or output to std output with std input
+    if ((infile == "-") && (outfile.empty())) {
+        std::cerr << "Standard input can be used only with standard output or output filename." << std::endl;
+        goto end;
+    }
+
+    // Hardcode svg ext for now
+    if (outfile.empty()) {
+        outfile = removeExtension(infile);
+    }
+    else if (outfile == "-") {
+        // DisableLog();
+        std_output = true;
+    }
+    else {
+        outfile = removeExtension(outfile);
+    }
+
+    // Load the std input or load the file
+    if (infile == "-") {
+        std::ostringstream data_stream;
+        for (std::string line; getline(std::cin, line);) {
+            data_stream << line << std::endl;
+        }
+        if (!toolkit.LoadData(data_stream.str())) {
+            std::cerr << "The input could not be loaded." << std::endl;
+            goto end;
+        }
+    }
+    else {
+        if (!toolkit.LoadFile(infile)) {
+            std::cerr << "The file '" << infile << "' could not be opened." << std::endl;
+            goto end;
+        }
+    }
+
+    if (toolkit.GetOutputFormat() != vrv::HUMDRUM) {
+        // Check the page range
+        if (page > toolkit.GetPageCount()) {
+            std::cerr << "The page requested (" << page << ") is not in the page range (max is " << toolkit.GetPageCount()
+                 << ")." << std::endl;
+            goto end;
+        }
+        if (page < 1) {
+            std::cerr << "The page number has to be greater than 0." << std::endl;
+            goto end;
+        }
+    }
+
+    from = page;
+    to = page + 1;
+    if (all_pages) {
+        to = toolkit.GetPageCount() + 1;
+    }
+
+    if (outformat == "svg") {
+        create_svg(toolkit, all_pages, from, to, outfile);
+    }
+    else if (outformat == "midi") {
+        create_midi(toolkit, all_pages, from, to, outfile);
+    }
+    else if (outformat == "timemap") {
+
+        create_timemap(toolkit, all_pages, from, to, outfile);
+    }
+    else if (outformat == "humdrum" || outformat == "hum") {
+        create_hum(toolkit, all_pages, from, to, outfile);
+    }
+    else {
+        create_mei(toolkit, all_pages, from, to, outfile);
+    }
+
+end:
+
+    return 0;
+}
+
+/*
 #ifdef __cplusplus
 }
 #endif
-
+*/
 
