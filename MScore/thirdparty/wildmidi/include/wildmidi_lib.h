@@ -24,6 +24,13 @@
 #ifndef WILDMIDI_LIB_H
 #define WILDMIDI_LIB_H
 
+#if true
+#pragma comment(lib, "wildmidi_static.lib")
+#pragma comment(lib, "winmm.lib")
+#define WILDMIDI_BUILD
+#define WILDMIDI_STATIC
+#endif
+
 /* library version number */
 #define LIBWILDMIDI_VER_MAJOR 0L
 #define LIBWILDMIDI_VER_MINOR 4L
