@@ -427,7 +427,7 @@ void midiUpdate(void *handle, uint32_t current, uint32_t total, uint32_t total_m
 }
 
 
-void create_svg(vrv::Toolkit &toolkit, int all_pages, int from, int to, std::string outfile)
+void create_svg(vrv::Toolkit &toolkit, int all_pages, int from, int to, std::string &outfile)
 {
     int p;
     for (p = from; p < to; ++p) {
@@ -438,7 +438,7 @@ void create_svg(vrv::Toolkit &toolkit, int all_pages, int from, int to, std::str
         cur_outfile += ".svg";
         if (!toolkit.RenderToSVGFile(cur_outfile, p)) {
             std::cerr << "Unable to write SVG to " << cur_outfile << "." << std::endl;
-            exit(1);
+            return;
         }
         else {
             std::cerr << "Output written to " << cur_outfile << "." << std::endl;
@@ -447,11 +447,8 @@ void create_svg(vrv::Toolkit &toolkit, int all_pages, int from, int to, std::str
 }
 
 
-void create_midi(vrv::Toolkit &toolkit, int all_pages, int from, int to, std::string outfile)
-{    
-    char *cfg = (char *)"../thirdparty/wildmidi/freepats/freepats.cfg";
-    struct _WM_inPlayHook wmhook;
-
+void create_midi(vrv::Toolkit &toolkit, int all_pages, int from, int to, std::string &outfile)
+{
     outfile += ".mid";
     if (!toolkit.RenderToMIDIFile(outfile)) {
         cerr << "Unable to write MIDI to " << outfile << "." << endl;
@@ -460,33 +457,39 @@ void create_midi(vrv::Toolkit &toolkit, int all_pages, int from, int to, std::st
     else {
         cerr << "Output written to " << outfile << "." << endl;
     }
+}
+
+int MScore_Play(vrv::Toolkit &toolkit, std::string outfile)
+{
+    char *cfg = (char *)"../thirdparty/wildmidi/freepats/freepats.cfg";
+    struct _WM_inPlayHook wmhook;    
 
     wmhook.handle = &toolkit;
     wmhook.pfn_get_para = get_playpara;
     wmhook.pfn_update = midiUpdate;
-    wildmidi(outfile.c_str(), cfg, &wmhook);
+    return wildmidi(outfile.c_str(), cfg, &wmhook);
 }
 
-void create_hum(vrv::Toolkit &toolkit, int all_pages, int from, int to, std::string outfile)
+void create_hum(vrv::Toolkit &toolkit, int all_pages, int from, int to, std::string &outfile)
 {
     outfile += ".krn";
 
     if (!toolkit.GetHumdrumFile(outfile)) {
         std::cerr << "Unable to write Humdrum to " << outfile << "." << std::endl;
-        exit(1);
+        return;
     }
     else {
         std::cerr << "Output written to " << outfile << "." << std::endl;
     }
 }
 
-void create_mei(vrv::Toolkit &toolkit, int all_pages, int from, int to, std::string outfile)
+void create_mei(vrv::Toolkit &toolkit, int all_pages, int from, int to, std::string &outfile)
 {
     if (all_pages) {
         toolkit.SetScoreBasedMei(true);
         if (!toolkit.SaveFile(outfile)) {
             std::cerr << "Unable to write MEI to " << outfile << "." << std::endl;
-            exit(1);
+            return;
         }
         else {
             std::cerr << "Output written to " << outfile << "." << std::endl;
@@ -494,217 +497,21 @@ void create_mei(vrv::Toolkit &toolkit, int all_pages, int from, int to, std::str
     }
     else {
         std::cerr << "MEI output of one page is available only to standard output." << std::endl;
-        exit(1);
+        return;
     }
 
 }
 
-void create_timemap(vrv::Toolkit &toolkit, int all_pages, int from, int to, std::string outfile)
+void create_timemap(vrv::Toolkit &toolkit, int all_pages, int from, int to, std::string &outfile)
 {
     outfile += ".json";
     if (!toolkit.RenderToTimemapFile(outfile)) {
         std::cerr << "Unable to write MIDI to " << outfile << "." << std::endl;
-        exit(1);
+        return;
     }
     else {
         std::cerr << "Output written to " << outfile << "." << std::endl;
     }
-}
-
-int MScore_init_t(vrv::Toolkit &toolkit ,std::string &infile, 
-                std::string &outfile, int argc, char **argv)
-{
-    int show_help = 0;
-    int show_version = 0;
-    int ret = 0;
-    int all_pages = 1;
-    int page = 1;
-    std::string outformat = "midi";
-    struct option *long_options = NULL;
-
-    int i = 0;
-
-    static struct option base_options[] = {
-        { "all-pages", no_argument, 0, 'a' },
-        { "format", required_argument, 0, 'f' },
-        { "help", no_argument, 0, '?' },
-        { "outfile", required_argument, 0, 'o' },
-        { "page", required_argument, 0, 'p' },
-        { "resources", required_argument, 0, 'r' },
-        { "scale", required_argument, 0, 's' },
-        { "type", required_argument, 0, 't' },
-        { "version", no_argument, 0, 'v' },
-        { "xml-id-seed", required_argument, 0, 'x' },
-        // deprecated - some use undocumented short options to catch them as such
-        { "border", required_argument, 0, 'b' },
-        { "ignore-layout", no_argument, 0, 'i' },
-        { "no-layout", no_argument, 0, 'n' },
-        { "page-height-deprecated", required_argument, 0, 'h' },
-        { "page-width-deprecated", required_argument, 0, 'w' },
-        { 0, 0, 0, 0 }
-    };
-
-    vrv::Options *options = toolkit.GetOptions();
-    const vrv::MapOfStrOptions *params = options->GetItems();
-    int mapSize = (int)params->size();
-
-    int baseSize = sizeof(base_options) / sizeof(option);
-
-    long_options = (struct option *)malloc(sizeof(struct option) * (baseSize + mapSize));
-
-    // A vector of string for storing names as const char* for long_options
-    std::vector<std::string> optNames;
-    optNames.reserve(mapSize);
-
-    vrv::MapOfStrOptions::const_iterator iter;
-    for (iter = params->begin(); iter != params->end(); ++iter) {
-        // Double check that back and forth convertion is correct
-        assert(toCamelCase(fromCamelCase(iter->first)) == iter->first);
-
-        optNames.push_back(fromCamelCase(iter->first));
-        long_options[i].name = optNames.at(i).c_str();
-        vrv::OptionBool *optBool = dynamic_cast<vrv::OptionBool *>(iter->second);
-        long_options[i].has_arg = (optBool) ? no_argument : required_argument;
-        long_options[i].flag = 0;
-        long_options[i].val = 0;
-        i++;
-    }
-
-    // Concatenate the base options
-    assert(i == mapSize);
-    for (; i < mapSize + baseSize; ++i) {
-        long_options[i].name = base_options[i - mapSize].name;
-        long_options[i].has_arg = base_options[i - mapSize].has_arg;
-        long_options[i].flag = base_options[i - mapSize].flag;
-        long_options[i].val = base_options[i - mapSize].val;
-    }
-
-    int c;
-    std::string key;
-    int option_index = 0;
-    vrv::Option *opt = NULL;
-    vrv::OptionBool *optBool = NULL;
-    while ((c = getopt_long(argc, argv, "?ab:f:h:ino:p:r:s:t:w:vx:", long_options, &option_index)) != -1) {
-    switch (c) {
-        case 0:
-            key = long_options[option_index].name;
-            opt = params->at(toCamelCase(key));
-            optBool = dynamic_cast<vrv::OptionBool *>(opt);
-            if (optBool) {
-                optBool->SetValue(true);
-            }
-            else if (opt) {
-                if (!opt->SetValue(optarg)) {
-                    vrv::LogWarning("Setting option %s with %s failed, default value used",
-                        long_options[option_index].name, optarg);
-                }
-            }
-            else {
-                vrv::LogError("Something went wrong with option %s", long_options[option_index].name);
-                ret = 1;
-                goto end;
-            }
-            break;
-
-        case 'a': all_pages = 1; break;
-
-        case 'b':
-            vrv::LogWarning("Option -b and --border is deprecated; use --page-margin-bottom, --page-margin-left, --page-margin-right and "
-                       "--page-margin-top instead");
-            options->m_pageMarginBottom.SetValue(optarg);
-            options->m_pageMarginLeft.SetValue(optarg);
-            options->m_pageMarginRight.SetValue(optarg);
-            options->m_pageMarginTop.SetValue(optarg);
-            break;
-
-        case 'f':
-            if (!toolkit.SetFormat(std::string(optarg))) {
-                ret = 1;
-                goto end;
-            };
-            break;
-
-        case 'h':
-            vrv::LogWarning("Option -h is deprecated; use --page-height instead");
-            options->m_pageHeight.SetValue(optarg);
-            break;
-
-        case 'i':
-            vrv::LogWarning("Option --ignore-layout is deprecated; use --breaks auto");
-            options->m_breaks.SetValue(vrv::BREAKS_auto);
-            break;
-
-        case 'n':
-            vrv::LogWarning("Option --no-layout is deprecated; use --breaks none");
-            options->m_breaks.SetValue(vrv::BREAKS_none);
-            break;
-
-        case 'o': outfile = std::string(optarg); break;
-
-        case 'p': page = atoi(optarg); break;
-
-        case 'r': vrv::Resources::SetPath(optarg); break;
-
-        case 't':
-            outformat = std::string(optarg);
-            toolkit.SetOutputFormat(std::string(optarg));
-            break;
-
-        case 's':
-            if (!toolkit.SetScale(atoi(optarg))) {
-                ret = 1;
-                goto end;
-            }
-            break;
-
-        case 'v': show_version = 1; break;
-
-        case 'w':
-            vrv::LogWarning("Option -w is deprecated; use --page-width instead");
-            options->m_pageWidth.SetValue(optarg);
-            break;
-
-        case 'x': vrv::Object::SeedUuid(atoi(optarg)); break;
-
-        case '?':
-            display_usage();
-            ret = 1;
-            goto end;
-            break;
-
-        default: break;
-    }
-    }
-
-    if (show_version) {
-        display_version();
-        ret = 1;
-        goto end;
-    }
-
-    if (show_help) {
-        display_usage();
-        ret = 1;
-        goto end;
-    }
-
-    if (optind <= argc - 1) {
-        infile = std::string(argv[optind]);
-    }
-    else {
-        std::cerr << "Incorrect number of arguments: expected one input file but found none." << std::endl << std::endl;
-        display_usage();
-        ret = 1;
-		goto end;
-    }
-
-end:
-
-    if(long_options) {
-        free(long_options);
-    }
-
-    return ret;
 }
 
 int MScore_init(vrv::Toolkit &toolkit ,std::string &infile, 
@@ -713,11 +520,9 @@ int MScore_init(vrv::Toolkit &toolkit ,std::string &infile,
     return 0;
 }
 
-
-int MScore_Main(int argc, char **argv)
+vrv::Toolkit * MScore_OpenFile(std::string infile, std::string &outfile)
 {
-    std::string infile;
-    std::string outfile;
+    //std::string outfile;
     std::string outformat = "midi";
     bool std_output = false;
     std::string fontName;
@@ -731,137 +536,10 @@ int MScore_Main(int argc, char **argv)
     // Create the toolkit instance without loading the font because
     // the resource path might be specified in the parameters
     // The fonts will be loaded later with Resources::InitFonts()
-    vrv::Toolkit toolkit(false);
-
-    if(MScore_init_t(toolkit, infile, outfile, argc, argv)) {
-        goto end;
-    }
-
-    options = toolkit.GetOptions();
-
-    vrv::Resources::SetPath("D:\\work\\GitHub\\projects\\MScore\\data");
-
-    // Make sure the user uses a valid Resource path
-    // Save many headaches for empty SVGs
-    if (!dir_exists(vrv::Resources::GetPath())) {
-        std::cerr << "The resources path " << vrv::Resources::GetPath() << " could not be found; please use -r option."
-             << std::endl;
-        goto end;
-    }
-
-    // Load the music font from the resource directory
-    if (!vrv::Resources::InitFonts()) {
-        std::cerr << "The music font could not be loaded; please check the contents of the resource directory." << std::endl;
-        goto end;
-    }
-
-    // Load a specified font
-    if (!vrv::Resources::SetFont(options->m_font.GetValue())) {
-        std::cerr << "Font '" << options->m_font.GetValue() << "' could not be loaded." << std::endl;
-        goto end;
-    }
-
-    if ((outformat != "svg") && (outformat != "mei") && (outformat != "midi") && (outformat != "timemap")
-        && (outformat != "humdrum") && (outformat != "hum")) {
-        std::cerr << "Output format (" << outformat << ") can only be 'mei', 'svg', 'midi', or 'humdrum'." << std::endl;
-        goto end;
-    }
-
-    // Make sure we provide a file name or output to std output with std input
-    if ((infile == "-") && (outfile.empty())) {
-        std::cerr << "Standard input can be used only with standard output or output filename." << std::endl;
-        goto end;
-    }
-
-    // Hardcode svg ext for now
-    if (outfile.empty()) {
-        outfile = removeExtension(infile);
-    }
-    else if (outfile == "-") {
-        // DisableLog();
-        std_output = true;
-    }
-    else {
-        outfile = removeExtension(outfile);
-    }
-
-    // Load the std input or load the file
-    if (infile == "-") {
-        std::ostringstream data_stream;
-        for (std::string line; getline(std::cin, line);) {
-            data_stream << line << std::endl;
-        }
-        if (!toolkit.LoadData(data_stream.str())) {
-            std::cerr << "The input could not be loaded." << std::endl;
-            goto end;
-        }
-    }
-    else {
-        if (!toolkit.LoadFile(infile)) {
-            std::cerr << "The file '" << infile << "' could not be opened." << std::endl;
-            goto end;
-        }
-    }
-
-    if (toolkit.GetOutputFormat() != vrv::HUMDRUM) {
-        // Check the page range
-        if (page > toolkit.GetPageCount()) {
-            std::cerr << "The page requested (" << page << ") is not in the page range (max is " << toolkit.GetPageCount()
-                 << ")." << std::endl;
-            goto end;
-        }
-        if (page < 1) {
-            std::cerr << "The page number has to be greater than 0." << std::endl;
-            goto end;
-        }
-    }
-
-    from = page;
-    to = page + 1;
-    if (all_pages) {
-        to = toolkit.GetPageCount() + 1;
-    }
-
-    if (outformat == "svg") {
-        create_svg(toolkit, all_pages, from, to, outfile);
-    }
-    else if (outformat == "midi") {
-        create_midi(toolkit, all_pages, from, to, outfile);
-    }
-    else if (outformat == "timemap") {
-
-        create_timemap(toolkit, all_pages, from, to, outfile);
-    }
-    else if (outformat == "humdrum" || outformat == "hum") {
-        create_hum(toolkit, all_pages, from, to, outfile);
-    }
-    else {
-        create_mei(toolkit, all_pages, from, to, outfile);
-    }
-
-end:
-
-    return 0;
-}
-
-int MScore_OpenFile(std::string infile)
-{
-//    std::string infile;
-    std::string outfile;
-    std::string outformat = "midi";
-    bool std_output = false;
-    std::string fontName;
-	int from;
-	int to;
-
-    int all_pages = 1;
-    int page = 1;
-    vrv::Options *options;
-
-    // Create the toolkit instance without loading the font because
-    // the resource path might be specified in the parameters
-    // The fonts will be loaded later with Resources::InitFonts()
-    vrv::Toolkit toolkit(false);
+    //vrv::Toolkit toolkit(false);
+    
+    vrv::Toolkit *ptoolkit = new vrv::Toolkit(false);
+	vrv::Toolkit &toolkit = *ptoolkit;
 
     if(MScore_init(toolkit, infile, outfile)) {
         goto end;
@@ -969,9 +647,11 @@ int MScore_OpenFile(std::string infile)
         create_mei(toolkit, all_pages, from, to, outfile);
     }
 
-end:
+    return ptoolkit;
 
-    return 0;
+end:
+    delete ptoolkit;
+    return NULL;
 }
 
 /*
