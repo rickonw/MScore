@@ -76,7 +76,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <LibraryPath>thirdparty\wildmidi;thirdparty\verovio;$(LibraryPath)</LibraryPath>
-    <IncludePath>thirdparty\wildmidi\include;thirdparty\libmei\include;thirdparty\verovio\include\hum;thirdparty\verovio\include\json;thirdparty\verovio\include\midi;thirdparty\verovio\include\pugi;thirdparty\verovio\include\utf8;thirdparty\verovio\include\vrv;thirdparty\verovio\include\win32;.;$(IncludePath)</IncludePath>
+    <IncludePath>thirdparty\wildmidi\include;thirdparty\libmei\include;thirdparty\verovio\include\hum;thirdparty\verovio\include\json;thirdparty\verovio\include\midi;thirdparty\verovio\include\pugi;thirdparty\verovio\include\utf8;thirdparty\verovio\include\vrv;thirdparty\verovio\include\win32;.;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\atlmfc\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
