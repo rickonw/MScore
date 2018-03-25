@@ -246,6 +246,18 @@ static struct option const long_options[] = {
     { NULL, 0, NULL, 0 }
 };
 
+struct _WM_inPlayPara WMPlayPara = {0};
+
+void WMPlay_Pause(bool flag)
+{
+	WMPlayPara.pause_set = flag;
+	if (flag) {
+		WMPlayPara.pause_state = 1;
+	} else {
+		WMPlayPara.pause_state = 0;
+	}
+}
+
 void get_playpara(void *midi_ptr, struct _WM_inPlayPara *inPlayPara)
 {
     uint8_t ch = 0;
@@ -258,6 +270,9 @@ void get_playpara(void *midi_ptr, struct _WM_inPlayPara *inPlayPara)
     struct _WM_Info *wm_info;
     unsigned long int seek_to_sample;
     uint32_t samples = 0;
+
+    memcpy(inPlayPara, &WMPlayPara, sizeof(struct _WM_inPlayPara));
+    return;
 
 #ifdef _WIN32
     if (_kbhit()) {
